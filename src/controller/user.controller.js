@@ -37,4 +37,12 @@ router.delete("/:id", async (req, res) => {
       return res.status(500).send({ message: err.message });
     }
   });
+  router.get("/:id",async(req,res)=>{
+    try{
+      const user=await User.findById(req.params.id).lean().exec();
+      return res.status(200).send(user);
+    }catch(err){
+      return res.status(500).send({message:err.message});
+    }
+  });
   module.exports = router;
